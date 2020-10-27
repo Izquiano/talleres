@@ -1,0 +1,13 @@
+.loginContainer{
+  margin-top: 50px;
+}
+.loginContainer form{
+  margin-top: 50px;
+}
+.loginContainer .footer{
+  /* position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%); */
+}
+

@@ -1,0 +1,30 @@
+.cochesContainer{
+  margin-top: 30px
+}
+
+.cochesContainer .addCar {
+  margin: 20px auto;
+}
+
+.cochesContainer .addCar a{
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+.listCochesContainer {
+  margin: 30px auto;
+  
+}
+
+.listCochesContainer button{
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.16);
+  border: none;
+  padding: 15px 20px;
+  border-radius: 50px;
+  width: 85%;
+  background-color: white;
+  
+}
+.listCochesContainer button b{
+  font-weight: 600;
+}

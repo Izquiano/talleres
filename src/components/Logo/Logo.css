@@ -1,0 +1,46 @@
+.logo {
+  color: var(--naranja);
+  font-style: italic;
+}
+.app,
+.talleres,
+.slogan {
+  display: block;
+}
+
+.app {
+  font-weight: 300;
+}
+.talleres {
+  font-weight: 900;
+}
+.slogan {
+  color: var(--gris);
+}
+
+/* SIZES */
+.logo.big{
+  margin: 2rem 0;
+}
+.big {
+  font-size: 4rem;
+  line-height: 4rem;
+}
+.slogan.big {
+  font-size: 2rem;
+  line-height: 4rem;
+}
+
+/* SIZES */
+.logo.small{
+  margin: 1rem 0;
+}
+.small {
+  font-size: 2rem;
+  line-height: 2rem;
+}
+.slogan.small {
+  font-size: 1rem;
+  line-height: 2rem;
+}
+

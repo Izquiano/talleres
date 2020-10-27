@@ -1,0 +1,16 @@
+.linkButton{
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: var(--naranja);
+  box-sizing: border-box;
+  display: block;
+  color: white;
+  border-radius: 50px;
+  margin: 30px auto;
+  width: 85%;
+  /* position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%); */
+
+}

@@ -1,0 +1,14 @@
+.socialLogin{
+  display: flex;
+  width: 85%;
+  margin: 0 auto;
+  justify-content: space-around;
+}
+.socialLogin .linkButton {
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: var(--gris);
+  text-align: left;
+  width: 130px;
+  vertical-align: middle;
+}

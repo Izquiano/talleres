@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import React from "react";
+import { Link} from "react-router-dom";
 import "./Signup.css";
 import Input from "../Input/Input";
 import Button from "../Button/Button";

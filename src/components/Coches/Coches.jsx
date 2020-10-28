@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./Coches.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Button from "../Button/Button";
 
 const Coches = () => {
   const [state, setState] = useState({
@@ -10,7 +9,6 @@ const Coches = () => {
     car: "",
     cars: [],
   });
-  const [step, setStep] = useState(0);
 
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -18,9 +16,7 @@ const Coches = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/user/cars/${user.id}`)
       .then((response) => {
-        console.log(response.data);
         setState({ ...state, cars: response.data, user: user.id });
-        // setStep( prevState => prevState + 1)
       });
   }, []);
 
@@ -30,9 +26,7 @@ const Coches = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/user/cars/${user.id}`)
       .then((response) => {
-        // console.log(response.data);
         setState({ ...state, cars: response.data, user: user.id });
-        setStep((prevState) => prevState + 1);
       });
   };
 
@@ -49,7 +43,6 @@ const Coches = () => {
         {state.cars.map((car) => (
           <button onClick={selectCar} value={car.id} key={car.id}>
             Matrícula: <b>{car.registration}</b>
-            
           </button>
         ))}
       </div>

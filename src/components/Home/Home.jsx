@@ -5,8 +5,7 @@ import Logo from "../Logo/Logo";
 
 const Home = () => {
 
-  const user = JSON.parse(localStorage.getItem("user"))
-  console.log(user.name)
+  // const user = JSON.parse(localStorage.getItem("user"))
   
   return (
     <div className="homeContainer">

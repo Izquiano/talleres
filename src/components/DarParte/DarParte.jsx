@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./DarParte.css";
 import axios from "axios";
-import Button from "../Button/Button";
+import Step0 from "../Steps/Step0/Step0";
+import Step1 from "../Steps/Step1/Step1";
+import Step2 from "../Steps/Step2/Step2";
 
 const DarParte = () => {
   const [state, setState] = useState({
     user: "",
     car: "",
+    services: [],
     cars: [],
     motivo: "",
   });
+  const [servicesList, setServicesList] = useState([]);
   const [step, setStep] = useState(0);
 
   const user = JSON.parse(localStorage.getItem("user"));
@@ -19,14 +23,22 @@ const DarParte = () => {
       .get(`${process.env.REACT_APP_API_URL}/user/cars/${user.id}`)
       .then((response) => {
         setState({ ...state, cars: response.data, user: user.id });
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, []);
 
-  // useEffect(() => {
-    
-  //       setStep({ step: step +1 });
-      
-  // }, [setStep]);
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/services`)
+      .then((response) => {
+        setServicesList(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const handleChangeMatricula = (e) => {
     const { name, value } = e.target;
@@ -39,7 +51,6 @@ const DarParte = () => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
     setState((prev) => {
       return {
         ...state,
@@ -48,51 +59,55 @@ const DarParte = () => {
     });
   };
 
+  const handleChangeServices = (e) => {
+    if (state.services.includes(e.target.textContent)) {
+      const servicesResult = state.services.filter(
+        (el) => el !== e.target.textContent
+      );
+      setState({ ...state, services: servicesResult });
+    } else {
+      var joined = state.services.concat(e.target.textContent);
+
+      setState((prev) => {
+        return {
+          ...state,
+          services: joined,
+        };
+      });
+    }
+  };
+
   const nextStep = () => {
-    setStep(step +1)
+    setStep(step + 1);
   };
 
   return (
-    <div className="darParteContainer">
-      <h1>Dar un Parte</h1>
-      <p>
-        <b>Seleccione un coche</b>
-      </p>
-      <div className="selectContainer">
-        <img src="/icons/ic_coche.svg" alt="" />
-        <select onChange={handleChangeMatricula} name="car">
-          <option value="">Elija un coche</option>
+    // Primera pantalla
 
-          {state.cars.map((car) => (
-            <option value={car.id} key={car.id}>
-              Matrícula: {car.registration}
-            </option>
-          ))}
-        </select>
-      </div>
+    <div>
+      {step === 0 ? (
+        <Step0
+          state={state}
+          nextStep={nextStep}
+          handleChangeMatricula={handleChangeMatricula}
+          handleChange={handleChange}
+        />
+      ) : null}
 
-      <p>
-        <b>¿A qué se debe el parte?</b>
-      </p>
-      <div
-        className={
-          state.motivo === "Mecánica y mantenimiento" ? "selected" : ""
-        }
-      >
-        <img src="/icons/ic_mecanica_y_mantenimiento.svg" alt="" />
-        <div onClick={handleChange} name="motivo">
-          Mecánica y mantenimiento
-        </div>
-      </div>
-      <div className={state.motivo === "Chapa y pintura" ? "selected" : ""}>
-        <img src="/icons/ic_chapa_y_pintura.svg" alt="" />
-        <div onClick={handleChange} name="motivo">
-          Chapa y pintura
-        </div>
-      </div>
-      {state.user && state.car && state.motivo ? 
-        <button className="step" onClick={nextStep}>Continuar</button>
-      : null}
+      {/* FIN primera pantalla */}
+      {/* Segunda pantalla */}
+
+      {step === 1 ? (
+        <Step1
+          state={state}
+          servicesList={servicesList}
+          handleChangeServices={handleChangeServices}
+          nextStep={nextStep}
+        />
+      ) : null}
+      {step === 2 ? (
+        <Step2 />
+      ) : null}
     </div>
   );
 };

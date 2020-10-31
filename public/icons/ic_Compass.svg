@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42">
+  <g id="Grupo_390" data-name="Grupo 390" transform="translate(-2006 -1026)">
+    <circle id="Elipse_134" data-name="Elipse 134" cx="21" cy="21" r="21" transform="translate(2006 1026)" fill="#ff7900"/>
+    <g id="rosa-de-los-vientos" transform="translate(2010 1030)">
+      <path id="Trazado_240" data-name="Trazado 240" d="M90.942,94.365l2.514-.909.909-2.514L90.4,89.092A.985.985,0,0,0,89.093,90.4Z" transform="translate(-83.155 -83.155)" fill="#fff"/>
+      <path id="Trazado_241" data-name="Trazado 241" d="M93.442,342.21l-2.514-.909-1.85,3.964a.985.985,0,0,0,1.309,1.309l3.964-1.85Z" transform="translate(-83.141 -318.888)" fill="#fff"/>
+      <path id="Trazado_242" data-name="Trazado 242" d="M342.211,93.457l2.514.909,1.85-3.964a.985.985,0,0,0-1.309-1.309l-3.964,1.85Z" transform="translate(-318.889 -83.156)" fill="#fff"/>
+      <path id="Trazado_243" data-name="Trazado 243" d="M344.724,341.3l-2.514.909-.909,2.514,3.964,1.85a.985.985,0,0,0,1.309-1.309Z" transform="translate(-318.888 -318.888)" fill="#fff"/>
+      <circle id="Elipse_135" data-name="Elipse 135" cx="1" cy="1" r="1" transform="translate(16 16)" fill="#fff"/>
+      <path id="Trazado_244" data-name="Trazado 244" d="M32.973,15.885,21.784,11.839,17.738.65a.985.985,0,0,0-1.853,0L11.839,11.839.65,15.885a.985.985,0,0,0,0,1.853l11.189,4.046,4.046,11.189a.985.985,0,0,0,1.853,0l4.046-11.189,11.189-4.046a.985.985,0,0,0,0-1.853ZM16.811,19.9A3.086,3.086,0,1,1,19.9,16.811,3.09,3.09,0,0,1,16.811,19.9Z" transform="translate(0)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AddCar.css";
 import axios from "axios";
 import Button from "../Button/Button";
@@ -14,22 +14,25 @@ const AddCar = () => {
     frameNumber: "",
   });
 
-  const sendData = (e) => {
-    e.preventDefault()
+  useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
-    setState({ user: user.id });
-    
+    setState({ ...state, user: user.id });
+  }, []);
+
+  const sendData = (e) => {
+    e.preventDefault();
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    setState({ ...state, user: user.id });
 
     axios
       .post(`${process.env.REACT_APP_API_URL}/cars`, state)
       .then((response) => {
         console.log(response.data);
-        
       });
   };
 
   const handleChange = (e) => {
-    
     const { name, value } = e.target;
     setState((prev) => {
       return {
@@ -57,28 +60,28 @@ const AddCar = () => {
           onChange={handleChange}
           value={state.model}
         />
-         <Input
+        <Input
           type="text"
           name="year"
           placeholder="Año"
           onChange={handleChange}
           value={state.year}
         />
-         <Input
+        <Input
           type="text"
           name="registration"
           placeholder="Matrícula"
           onChange={handleChange}
           value={state.registration}
         />
-         <Input
+        <Input
           type="text"
           name="frameNumber"
           placeholder="Nº de Bastidor"
           onChange={handleChange}
           value={state.frameNumber}
         />
-        
+
         <Button type="submit" text="Enviar" />
       </form>
     </div>

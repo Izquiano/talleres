@@ -1,0 +1,33 @@
+
+.confirmationContainer{
+  margin-top: 30px;
+}
+
+
+.confirmationContainer img{
+  margin: 50px auto 20px;
+}
+
+.confirmationContainer .buttonToHome {
+  border: none;
+  width: 85%;
+  padding: 15px 20px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.16);
+  border-radius: 50px;
+  background-color: var(--naranja);
+  color: white;
+  font-weight: 600;
+  font-size: 1em;
+  position: relative;
+  bottom: unset;
+  left: unset;
+  transform: inherit;
+  margin: 40px auto;
+  text-decoration: none;
+  display: block
+}
+
+.confirmationContainer p{
+  width: 85%;
+  margin: 0 auto;
+}

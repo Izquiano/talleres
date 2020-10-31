@@ -1,0 +1,54 @@
+.mapaContainer {
+  margin-top: 30px;
+  position: relative;
+}
+
+.mapaContainer .locate {
+  position: absolute;
+  top: 6rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  z-index: 10;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.16);
+  border-radius: 50px;
+  height: 42px;
+}
+
+.mapaContainer .search{
+  position: absolute;
+  top: 6rem;
+  left: 1rem;
+  background: none;
+  border: none;
+  z-index: 10;
+  width: 75%;
+
+}
+
+.mapaContainer #map {
+  margin-top: 30px;
+}
+
+.mapaContainer .seleccionar {
+  color: var(--naranja)
+}
+
+.mapaContainer .step {
+  border: none;
+  width: 85%;
+  padding: 15px 20px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.16);
+  border-radius: 50px;
+  background-color: var(--naranja);
+  color: white;
+  font-weight: 600;
+  font-size: 1em;
+  position: relative;
+  bottom: unset;
+  left: unset;
+  transform: inherit;
+  margin: 40px 0px;
+
+}
+

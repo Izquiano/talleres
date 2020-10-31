@@ -9,11 +9,12 @@ const Step1 = ({ state, servicesList, handleChangeServices, nextStep }) => (
           {servicesList.map((el) => (
             <div
               onClick={handleChangeServices}
-              className={state.services.includes(el.name) ? "selected" : ""}
+              className={state.services.includes(el.id) ? "selected" : ""}
               key={el.id}
+              
             >
               <img src={`/icons/ic_${el.name}.svg`} alt="icon" />
-              <div>{el.name}</div>
+              <div id={el.id}>{el.name}</div>
             </div>
           ))}
           {state.services.length > 0 ? (

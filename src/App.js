@@ -6,6 +6,7 @@ import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import DarParte from './components/DarParte/DarParte';
+import Confirmation from './components/Confirmation/Confirmation';
 
 
 import "./App.css";
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/dar-parte" component={DarParte} />
         <Route exact path="/coches" component={Coches} />
         <Route exact path="/add-car" component={AddCar} />
+        <Route exact path="/confirmation" component={Confirmation} />
       </Switch>
     </div>
   );

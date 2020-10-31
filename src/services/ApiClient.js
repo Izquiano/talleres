@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const http = axios.create({
-  // baseURL: process.env.REACT_APP_API_URL,
-  baseURL:"http://localhost:3011",
+  baseURL: process.env.REACT_APP_API_URL,
+  
   withCredentials: true
 })
 
@@ -18,4 +18,5 @@ http.interceptors.response.use(function(response){
 
 export const login = ({ email, password }) => http.post('http://localhost:3011/login', { email, password })
 export const signup = ({ name, email, password }) => http.post('http://localhost:3011/signup', { name, email, password })
+export const editCar = ({ user, carBrand, model, id, registration, frameNumber, year }) => http.patch(`http://localhost:3011/cars/${id}`, { user, carBrand, model, id, registration, frameNumber, year })
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Coches.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import EditCar from "../EditCar/EditCar";
 
 const Coches = () => {
   const [state, setState] = useState({
@@ -31,29 +32,45 @@ const Coches = () => {
   };
 
   const selectCar = (e) => {
-    console.log(e.target);
-    setState({ ...state, car: e.target.value });
+    console.log(e.target.id);
+    const selectedCar = state.cars.filter(el => el.id === e.target.id)
+    setState({ ...state, car: selectedCar[0] });
   };
 
   return (
-    <div className="cochesContainer">
-      <h1>Coches</h1>
+    <div>
+      {state.car.length < 1 ? (
+        <div className="cochesContainer">
+          <h1>Coches</h1>
 
-      <div className="listCochesContainer">
-        {state.cars.map((car) => (
-          <button onClick={selectCar} value={car.id} key={car.id}>
-            Matrícula: <b>{car.registration}</b>
-          </button>
-        ))}
-      </div>
-      <div className="addCar">
-        <Link to="/add-car">
-          <img src="/icons/ic_mas.svg" alt="icono añadir coche" />
-          Añadir coche
-        </Link>
-      </div>
+          <div className="listCochesContainer">
+            {state.cars.map((car) => (
+              <button key={car.id}>
+                <p onClick={selectCar} id={car.id}>
+                  Matrícula: <b>{car.registration}</b>
+                </p>
+              </button>
+            ))}
+          </div>
+          <div className="addCar">
+            <Link to="/add-car">
+              <img src="/icons/ic_mas.svg" alt="icono añadir coche" />
+              Añadir coche
+            </Link>
+          </div>
 
-      <button onClick={getdata}>Get Data</button>
+          <button onClick={getdata}>Get Data</button>
+        </div>
+      ) : (
+        <EditCar
+          car={state.car}
+          // carBrand={}
+          // model={}
+          // year={}
+          // registration={}
+          // frameNumber={}
+        />
+      )}
     </div>
   );
 };

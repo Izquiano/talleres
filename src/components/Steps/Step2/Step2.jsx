@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import axios from 'axios'
+import axios from "axios";
+import "./Step2.css";
 
 import {
   GoogleMap,
@@ -18,18 +19,13 @@ import {
   ComboboxList,
   ComboboxOption,
 } from "@reach/combobox";
-import { formatRelative } from "date-fns";
 
 import "@reach/combobox/styles.css";
 // import mapStyles from "./mapStyles";
 
-
-
-
-
 const libraries = ["places"];
 const mapContainerStyle = {
-  height: "500px",
+  height: "450px",
   width: "100vw",
 };
 const options = {
@@ -40,46 +36,30 @@ const options = {
 
 let center = null;
 
-const actualPosition = navigator.geolocation.getCurrentPosition(function(position) {
-  center = {lat: position.coords.latitude, lng: position.coords.longitude}
-  return center
+navigator.geolocation.getCurrentPosition(function (position) {
+  center = { lat: position.coords.latitude, lng: position.coords.longitude };
+  return center;
 });
 
-
-
-
-
-const Step2 = () => {
+const Step2 = ({ nextStep, handleChangeSelected, selected }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
   const [markers, setMarkers] = React.useState([]);
-  const [selected, setSelected] = React.useState(null);
-
+  // const [selected, setSelected] = React.useState(null);
 
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/workshops`)
       .then((response) => {
-        console.log(response.data)
+        
         setMarkers(response.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-
-  // const onMapClick = React.useCallback((e) => {
-  //   setMarkers((current) => [
-  //     ...current,
-  //     {
-  //       lat: e.latLng.lat(),
-  //       lng: e.latLng.lng(),
-  //       time: new Date(),
-  //     },
-  //   ]);
-  // }, []);
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
@@ -95,10 +75,8 @@ const Step2 = () => {
   if (!isLoaded) return "Loading...";
 
   return (
-    <div>
-      <h1>
-        Selecciona un taller
-      </h1>
+    <div className="mapaContainer">
+      <h1>Selecciona un taller</h1>
 
       <Locate panTo={panTo} />
       <Search panTo={panTo} />
@@ -113,12 +91,12 @@ const Step2 = () => {
         onLoad={onMapLoad}
       >
         {markers.map((marker) => (
-          
           <Marker
             key={`${marker.location.lat}-${marker.location.lng}`}
             position={{ lat: marker.location.lat, lng: marker.location.lng }}
             onClick={() => {
-              setSelected(marker);
+              // setSelected(marker);
+              handleChangeSelected(marker)
             }}
             icon={{
               url: `icons/ic_Pointer.svg`,
@@ -131,27 +109,38 @@ const Step2 = () => {
 
         {selected ? (
           <InfoWindow
-            position={{ lat: selected.location.lat, lng: selected.location.lng }}
-            onCloseClick={() => {
-              setSelected(null);
+            position={{
+              lat: selected.location.lat,
+              lng: selected.location.lng,
+            }}
+            onCloseClick={() => { 
+              // setSelected(null);
+              handleChangeSelected(null)
             }}
           >
             <div>
-              <h2>
-                {selected.name}
-              </h2>
-              <p>Teléfono: <a href={ `tel:${selected.telephone}` }>{ `${selected.telephone}` }</a>
-                {/* {formatRelative(selected.time, new Date())} */}
-                </p>
+              <b className="seleccionar">SELECCIONAR</b>
+              <h2>{selected.name}</h2>
+              <p>
+                Teléfono:{" "}
+                <a
+                  href={`tel:${selected.telephone}`}
+                >{`${selected.telephone}`}</a>
+              </p>
             </div>
           </InfoWindow>
         ) : null}
       </GoogleMap>
+      {selected ? (
+        <button className="step" onClick={nextStep}>
+          Continuar
+        </button>
+      ) : null}
     </div>
   );
-}
+};
 
-export default Step2
+export default Step2;
 
 function Locate({ panTo }) {
   return (
@@ -169,7 +158,7 @@ function Locate({ panTo }) {
         );
       }}
     >
-      <img src="/compass.svg" alt="compass" />
+      <img src="icons/ic_Compass.svg" alt="compass" />
     </button>
   );
 }
@@ -219,8 +208,8 @@ function Search({ panTo }) {
         <ComboboxPopover>
           <ComboboxList>
             {status === "OK" &&
-              data.map(({ id, description }) => (
-                <ComboboxOption key={id} value={description} />
+              data.map(({ description }, i) => (
+                <ComboboxOption key={i} value={description} />
               ))}
           </ComboboxList>
         </ComboboxPopover>

@@ -53,7 +53,6 @@ const Step2 = ({ nextStep, handleChangeSelected, selected }) => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/workshops`)
       .then((response) => {
-        
         setMarkers(response.data);
       })
       .catch((err) => {
@@ -96,7 +95,7 @@ const Step2 = ({ nextStep, handleChangeSelected, selected }) => {
             position={{ lat: marker.location.lat, lng: marker.location.lng }}
             onClick={() => {
               // setSelected(marker);
-              handleChangeSelected(marker)
+              handleChangeSelected(marker);
             }}
             icon={{
               url: `icons/ic_Pointer.svg`,
@@ -113,9 +112,9 @@ const Step2 = ({ nextStep, handleChangeSelected, selected }) => {
               lat: selected.location.lat,
               lng: selected.location.lng,
             }}
-            onCloseClick={() => { 
+            onCloseClick={() => {
               // setSelected(null);
-              handleChangeSelected(null)
+              handleChangeSelected(null);
             }}
           >
             <div>

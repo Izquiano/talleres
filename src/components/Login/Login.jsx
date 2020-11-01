@@ -4,6 +4,7 @@ import "./Login.css";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import { useAuthContext } from "../../contexts/AuthContext"; 
+import LinkButton from "../LinkButton/LinkButton";
 
 import { login } from "../../services/ApiClient";
 
@@ -57,15 +58,22 @@ const Login = (props) => {
         />
         <Input
           type={visible ? "text" : "password"}
+          onClick={showPassword}
           name="password"
           placeholder="Contraseña"
           icon="password"
           onChange={handleChange}
           value={state.password}
-          onClick={showPassword}
+          
         />
         <Button type="submit" text="Entrar" />
       </form>
+
+      <p>O inicia sesión con</p>
+        <div className="socialLogin">
+          <LinkButton href={`${process.env.REACT_APP_API_URL}/auth/google`} text="Google" icon="google" />
+          <LinkButton href="/auth/facebook" text="Facebook" icon="facebook" />
+        </div>
 
       <div className="footer">
         <p>¿Aún no estás registrado?</p>

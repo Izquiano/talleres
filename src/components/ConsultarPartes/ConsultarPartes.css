@@ -1,0 +1,49 @@
+.consultarPartesContainer {
+  margin-top: 30px;
+  position: relative;
+}
+
+.cardParte {
+  width: 85%;
+  padding: 10px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.16);
+  margin: 30px auto 0px;
+  border-radius: 20px;
+  text-align: left;
+}
+
+.consultarPartesContainer a {
+  text-decoration: none;
+  color: var(--negro);
+}
+.checkActiveContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 150px;
+  align-items: center;
+  margin: 20px auto;
+}
+.checkActive {
+  width: 60px;
+  height: 30px;
+  border-radius: 50px;
+  padding: 5px;
+}
+.checkActive.enabled {
+  background-color: grey;
+}
+.checkActive.disabled {
+  background-color: var(--naranja);
+}
+.checkActive > div {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50px;
+}
+.checkActive.enabled > div {
+  float: left;
+}
+.checkActive.disabled > div {
+  float: right;
+}

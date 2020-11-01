@@ -3,6 +3,7 @@ import React, { useState, createContext, useCallback, useContext } from 'react'
 const AuthContext = createContext()
 
 export const AuthContextProvider = ({ children }) => {
+  
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
 
   const login = useCallback( user => {

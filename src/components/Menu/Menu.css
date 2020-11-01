@@ -1,0 +1,31 @@
+.menuClosed{
+  width: 30px;
+  padding: 10px 20px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.menuClosed img.menu{
+  width: 4px;
+}
+
+ul.menu{
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  width: 70%;
+  z-index: 20;
+  background-color: white;
+  transform: translateX(-50%);
+  list-style: none;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.16);
+}
+
+ul.menu a{ 
+  text-decoration: none;
+  padding: 20px;
+  display: block;
+  border-bottom: 1px solid var(--naranja);
+}

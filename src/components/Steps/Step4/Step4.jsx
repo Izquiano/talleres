@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import "./Step4.css";
 import axios from "axios";
-
+import { FormatDate } from "../../../Helpers/Helpers";
+import { useAuthContext } from "../../../contexts/AuthContext";
+import { addParte } from "../../../services/ApiClient";
 
 const Step4 = ({ user, car, services, date, workshop }) => {
   const [parte, setParte] = useState({});
   const [fullUser, setFullUser] = useState({});
   const [fullCar, setFullCar] = useState({});
   const [servicesForCar, setServicesForCar] = useState([]);
+  const [redirectTo, setRedirectTo] = useState(false);
+  const authContext = useAuthContext();
 
   useEffect(() => {
     setParte({ user, car, date, workshop });
@@ -15,15 +20,13 @@ const Step4 = ({ user, car, services, date, workshop }) => {
 
   useEffect(() => {
     let servicesFiltered = [];
-    axios.get(`${process.env.REACT_APP_API_URL}/services`)
-    .then((response) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/services`).then((response) => {
       for (let i = 0; i < services.length; i++) {
         const serviceFiltered = response.data.filter(
           (el) => el.id === services[i]
         );
         servicesFiltered.push(serviceFiltered[0].name);
       }
-      console.log(servicesFiltered);
     });
 
     setServicesForCar(servicesFiltered);
@@ -42,26 +45,23 @@ const Step4 = ({ user, car, services, date, workshop }) => {
       .get(`${process.env.REACT_APP_API_URL}/cars/${car}`)
       .then((response) => {
         setFullCar(response.data);
-        console.log(response.data);
       });
   }, []);
 
   const handleSubmit = (e) => {
-    axios
-      .post(`${process.env.REACT_APP_API_URL}/services-resume`, {
-        date: date,
-        user: user,
-        car: car,
-        services: services,
-      })
+    e.preventDefault();
+    addParte({ date, user, car, services, workshop })
       .then((response) => {
+        // authContext.login(response);
         console.log(response);
-        window.location.assign('/confirmation')
+        setRedirectTo(true);
       })
-      
       .catch((err) => console.log(err));
   };
 
+  if (redirectTo) {
+    return <Redirect to="/confirmation" />;
+  }
   return (
     <div className="resumenContainer">
       <h1>Datos del parte</h1>
@@ -86,7 +86,7 @@ const Step4 = ({ user, car, services, date, workshop }) => {
       <div>
         <b>Fecha</b>
       </div>
-      <span>date: {JSON.stringify(date)}</span>
+      <span>{FormatDate(date)}</span>
 
       <button className="step" onClick={handleSubmit}>
         Confirmar

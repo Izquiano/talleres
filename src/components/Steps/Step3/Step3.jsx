@@ -2,6 +2,7 @@ import React from "react";
 import DayPicker from "react-day-picker";
 import "react-day-picker/lib/style.css";
 import "./Step3.css";
+import { FormatDate } from "../../../Helpers/Helpers";
 
 const MONTHS = [
   "Enero",
@@ -51,8 +52,7 @@ const Step3 = ({ handleDayClick, day, nextStep }) => {
 
       {day ? (
         <p>
-          Has seleccionado:
-          {JSON.stringify(day)}{" "}
+          Has seleccionado: <b>{FormatDate(day)}</b>
         </p>
       ) : (
         <p>Por favor, seleccione una fecha</p>

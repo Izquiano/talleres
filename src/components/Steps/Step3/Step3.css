@@ -4,13 +4,13 @@
 }
 
 .DayPicker{
-  margin: 30px auto;
+  margin: 20px auto 10px;
 }
 
 .DayPicker-Month {
   
   width: 300px;
-  height: 245px;
+  height: 280px;
 }
 
 .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover,

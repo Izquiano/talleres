@@ -5,6 +5,9 @@
 .cochesContainer .addCar {
   margin: 20px auto;
 }
+.cochesContainer .addCar b{
+  margin: 10px auto;
+}
 
 .cochesContainer .addCar a{
   display: flex;

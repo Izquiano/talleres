@@ -1,0 +1,10 @@
+.editCocheContainer{
+  margin-top: 30px;
+  position: relative;
+}
+
+.editCocheContainer a.linkButton{
+ background-color: red;
+ font-weight: 600;
+ width: 120px;
+}

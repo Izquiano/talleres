@@ -32,8 +32,8 @@ const Coches = () => {
   };
 
   const selectCar = (e) => {
-    console.log(e.target.id);
-    const selectedCar = state.cars.filter(el => el.id === e.target.id)
+   
+    const selectedCar = state.cars.filter((el) => el.id === e.target.id);
     setState({ ...state, car: selectedCar[0] });
   };
 
@@ -55,11 +55,9 @@ const Coches = () => {
           <div className="addCar">
             <Link to="/add-car">
               <img src="/icons/ic_mas.svg" alt="icono añadir coche" />
-              Añadir coche
+              <b>Añadir coche</b> 
             </Link>
           </div>
-
-          <button onClick={getdata}>Get Data</button>
         </div>
       ) : (
         <EditCar

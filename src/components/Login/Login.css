@@ -1,13 +1,20 @@
-.loginContainer{
+.loginContainer {
   margin-top: 50px;
 }
-.loginContainer form{
+.loginContainer form {
   margin-top: 50px;
 }
-.loginContainer .footer{
-  /* position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%); */
+.socialLogin {
+  display: flex;
+  width: 85%;
+  margin: 0 auto;
+  justify-content: space-around;
 }
-
+.socialLogin .linkButton {
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: var(--gris);
+  text-align: left;
+  width: 130px;
+  vertical-align: middle;
+}

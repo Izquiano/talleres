@@ -14,6 +14,7 @@ const DarParte = () => {
     services: [],
     cars: [],
     motivo: "",
+    workshop: ""
   });
   const [servicesList, setServicesList] = useState([]);
   const [step, setStep] = useState(0);
@@ -64,7 +65,7 @@ const DarParte = () => {
   };
 
   const handleChangeServices = (e) => {
-    console.log(e.target.id)
+    
     if (state.services.includes(e.target.id)) {
       const servicesResult = state.services.filter(
         (el) => el !== e.target.id

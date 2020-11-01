@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-// import "./EditCar.css";
+import "./EditCar.css";
 
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import { useAuthContext } from "../../contexts/AuthContext"; 
 import { editCar } from "../../services/ApiClient";
+import LinkButton from "../LinkButton/LinkButton"
+
+import { eliminarCoche } from "../../services/ApiClient";
+
 
 const EditCar = (props) => {
   const [state, setState] = useState({
@@ -23,6 +27,15 @@ const EditCar = (props) => {
     setState(props.car);
   }, []);
 
+  const deleteCar = (e) => {
+    e.preventDefault();
+    console.log(state.id)
+    eliminarCoche(state.id).then((response) => {
+      // authContext.login(response);
+      
+      window.location.assign("/coches");
+    });
+  };
 
 
 
@@ -45,24 +58,6 @@ const EditCar = (props) => {
   };
 
 
-  //ORIGINAL
-  // const sendData = (e) => {
-  //   e.preventDefault();
-  //   console.log(state);
-  //   axios
-  //     .patch(`${process.env.REACT_APP_API_URL}/cars/${state.id}`, {
-  //       carBrand: state.carBrand,
-  //       model: state.model,
-  //       year: state.year,
-  //       registration: state.registration,
-  //       frameNumber: state.frameNumber,
-  //       user: state.user,
-  //     })
-  //     .then((response) => {
-  //       console.log(response.data);
-  //     })
-  //     .catch((err) => setError(err.message));
-  // };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -121,6 +116,7 @@ const EditCar = (props) => {
 
             <Button type="submit" text="Enviar" />
           </form>
+          <div onClick={deleteCar}>Borrar</div>
         </div>
       ) : (
         <p>Loading...</p>

@@ -29,6 +29,7 @@ const AddCar = () => {
       .post(`${process.env.REACT_APP_API_URL}/cars`, state)
       .then((response) => {
         console.log(response.data);
+        window.location.assign("/coches");
       });
   };
 

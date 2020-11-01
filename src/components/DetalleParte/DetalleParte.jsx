@@ -67,7 +67,7 @@ const DetalleParte = (props) => {
         <p>Taller: {state.workshop.name}</p>
         <p>Fecha: {FormatDate(state.date)}</p>
 
-        <div onClick={handleClick}>Borrar</div>
+        <div className="delete" onClick={handleClick}>Borrar</div>
       </div>
     </div>
   );

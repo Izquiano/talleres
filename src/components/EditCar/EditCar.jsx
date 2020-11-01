@@ -5,7 +5,8 @@ import Button from "../Button/Button";
 import Input from "../Input/Input";
 import { useAuthContext } from "../../contexts/AuthContext"; 
 import { editCar } from "../../services/ApiClient";
-import LinkButton from "../LinkButton/LinkButton"
+
+import { Redirect } from "react-router-dom";
 
 import { eliminarCoche } from "../../services/ApiClient";
 
@@ -19,6 +20,7 @@ const EditCar = (props) => {
     frameNumber: "",
   });
 
+  const [redirectTo, setRedirectTo] = useState(false);
   const [error, setError] = useState()
   const authContext = useAuthContext();
   
@@ -33,7 +35,7 @@ const EditCar = (props) => {
     eliminarCoche(state.id).then((response) => {
       // authContext.login(response);
       
-      window.location.assign("/coches");
+      setRedirectTo(true);
     });
   };
 
@@ -69,6 +71,12 @@ const EditCar = (props) => {
     });
   };
 
+  if (!state) {
+    return <div>Loading...</div>;
+  }
+  if (redirectTo) {
+    return <Redirect to="/successfull" />;
+  }
   return (
     <div>
       {

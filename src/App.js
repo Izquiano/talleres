@@ -9,12 +9,14 @@ import Signup from './components/Signup/Signup';
 import DarParte from './components/DarParte/DarParte';
 import Confirmation from './components/Confirmation/Confirmation';
 import ConsultarPartes from './components/ConsultarPartes/ConsultarPartes';
+import User from './components/User/User';
 
 
 
 import "./App.css";
 import Coches from "./components/Coches/Coches";
 import AddCar from "./components/AddCar/AddCar";
+import Successfull from "./components/Successfull/Successfull";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
@@ -33,6 +35,8 @@ function App() {
         <Route exact path="/add-car" component={AddCar} />
         <Route exact path="/confirmation" component={Confirmation} />
         <Route exact path="/consultar-partes" component={ConsultarPartes} />
+        <Route exact path="/user" component={User} />
+        <Route exact path="/successfull" component={Successfull} />
         
 
         

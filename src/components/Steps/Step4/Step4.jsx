@@ -11,7 +11,7 @@ const Step4 = ({ user, car, services, date, workshop }) => {
   const [fullUser, setFullUser] = useState({});
   const [fullCar, setFullCar] = useState({});
   const [servicesForCar, setServicesForCar] = useState([]);
-  const [redirectTo, setRedirectTo] = useState(false);
+  const [redirectTo, setRedirectTo] = useState(false); 
   const authContext = useAuthContext();
 
   useEffect(() => {
@@ -53,14 +53,14 @@ const Step4 = ({ user, car, services, date, workshop }) => {
     addParte({ date, user, car, services, workshop })
       .then((response) => {
         // authContext.login(response);
-        console.log(response);
+        
         setRedirectTo(true);
       })
       .catch((err) => console.log(err));
   };
 
   if (redirectTo) {
-    return <Redirect to="/confirmation" />;
+    return <Redirect to="/successfull" />;
   }
   return (
     <div className="resumenContainer">

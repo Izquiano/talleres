@@ -25,7 +25,7 @@ const Home = () => {
         <img src="/icons/ic_coches.svg" alt=""/>
           <p>Coches</p>
         </Link>
-        <Link to="user/:id" className="button-home">
+        <Link to="user" className="button-home">
         <img src="/icons/ic_informacion_de_registro.svg" alt=""/>
           <p>Información de Registro</p>
         </Link>

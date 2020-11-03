@@ -25,7 +25,7 @@ const Menu = () => {
             <li><Link to="/dar-parte">Dar Parte</Link></li>
             <li><Link to="/coches">Coches</Link></li>
             <li><Link to="/consultar-partes">Consultar partes</Link></li>
-            <li><Link to="/user/:id">Información de registro</Link></li>
+            <li><Link to="/user">Información de registro</Link></li>
           </ul>): null
           
         }

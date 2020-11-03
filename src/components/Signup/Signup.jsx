@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "./Signup.css";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
@@ -12,6 +12,8 @@ const Signup = () => {
     email: "",
     password: "",
   });
+  const [error, SetError] = useState("")
+  const [redirectTo, setRedirectTo] = useState(false)
 
   const [visible, setVisible] = useState(false);
 
@@ -37,11 +39,18 @@ const Signup = () => {
     e.preventDefault();
     signup(state)
       .then((response) => {
-        window.location.assign("/login");
+        
+        if(response.error) {
+          SetError(response.error)
+        } else {
+          setRedirectTo(true)
+        }
       })
       .catch((error) => console.error(error));
   };
-
+ if(redirectTo){
+   return <Redirect to="/login" />
+ }
   return (
     <div className="loginContainer">
       <h1>Registro</h1>
@@ -54,6 +63,7 @@ const Signup = () => {
           onChange={handleChange}
           value={state.name}
         />
+        { error.name ? <div className="error"> {error.name.message} </div>: null}
         <Input
           type="text"
           name="email"
@@ -61,6 +71,7 @@ const Signup = () => {
           onChange={handleChange}
           value={state.email}
         />
+        { error.email ? <div className="error"> {error.email.message} </div>: null}
         <Input
           type={visible ? "text" : "password"}
           onClick={showPassword}
@@ -70,6 +81,7 @@ const Signup = () => {
           onChange={handleChange}
           value={state.password}
         />
+        { error.password ? <div className="error"> {error.password.message} </div>: null}
 
         <Button type="submit" text="Enviar" />
       </form>

@@ -1,12 +1,14 @@
 .menuClosed{
-  width: 30px;
+  
   padding: 10px 20px;
   position: relative;
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
-
+.menuClosed > div{
+  width: 30px;
+}
 .menuClosed img.menu{
   width: 4px;
 }

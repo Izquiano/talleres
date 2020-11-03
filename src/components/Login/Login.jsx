@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "./Login.css";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
@@ -13,6 +13,9 @@ const Login = (props) => {
     email: "",
     password: "",
   });
+  const [error, SetError] = useState("")
+
+  const [redirectTo, setRedirecTo] = useState (false)
   const [visible, setVisible] = useState(false);
 
   const authContext = useAuthContext();
@@ -20,10 +23,11 @@ const Login = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     login(state).then((response) => {
+      
       authContext.login(response);
       console.log(response);
-      window.location.assign("/home");
-    });
+      setRedirecTo(true)
+    }).catch(err => console.log(err))
   };
 
   const handleChange = (e) => {
@@ -42,6 +46,10 @@ const Login = (props) => {
   const showPassword = () => {
     setVisible(!visible);
   };
+
+  if(redirectTo){
+    return <Redirect to="/home" />
+  }
 
   return (
     <div className="loginContainer">

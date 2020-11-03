@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./DarParte.css";
 import axios from "axios";
 import Step0 from "../Steps/Step0/Step0";
+import ChapaYPintura from '../ChapaYPintura/ChapaYPintura'
 import Step1 from "../Steps/Step1/Step1";
 import Step2 from "../Steps/Step2/Step2";
 import Step3 from "../Steps/Step3/Step3";
@@ -81,10 +82,11 @@ const DarParte = () => {
         };
       });
     }
-  };
+  }; 
 
   const handleChangeSelected = (selection) => {
-    setSelected(selection);
+    setState({ ...state, workshop: selection});
+    setSelected(selection)
   };
 
   const handleDayClick = (date, { sunday, disabled }) => {
@@ -114,8 +116,11 @@ const DarParte = () => {
 
       {/* FIN primera pantalla */}
       {/* Segunda pantalla */}
+      {step === 1 && state.motivo === "Chapa y pintura" ? (
+        <ChapaYPintura state={state}/>
+      ): null}
 
-      {step === 1 ? (
+      {step === 1 && state.motivo === "Mecánica y mantenimiento" ? (
         <Step1
           state={state}
           servicesList={servicesList}

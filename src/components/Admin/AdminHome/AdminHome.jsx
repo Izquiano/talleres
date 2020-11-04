@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { workshops, listarPartes } from "../../../services/ApiClient";
-import Dankmemes from "../Chart/Chart";
-
-
-
+import ChartPartes from "../Chart/ChartPartes";
+import ChartServices from "../Chart/ChartServices";
+import Workshop from "../Workshop/Workshop";
+import Redirect from 'react-router-dom'
 
 import "./AdminHome.css";
 
@@ -21,21 +21,10 @@ const AdminHome = () => {
     listarPartes().then((response) => {
       setPartes(response);
     });
-  }, []);
-
-
-
-
-
-  
-  
-
-  const nombresTalleres = () => {
-    let nombres = [];
-    workshopsList.map((el) => nombres.push(el.name));
-    return nombres;
-  };
-
+  }, [selectWorkshop]);
+  // useEffect(() => {
+  //   setSelectWorkshop(null)
+  // }, []);
 
   const filterPartesPorWorkshop = (workshopId) => {
     let result = partes.filter((parte) => parte.workshop.id === workshopId);
@@ -43,36 +32,20 @@ const AdminHome = () => {
   };
 
   const handleclickSelectWorkshop = (e) => {
-    setSelectWorkshop(e.target.id);
+    setSelectWorkshop(e.target.parentNode.id);
   };
 
   if (selectWorkshop) {
-    return <div>Seleccionado</div>;
+    return <Workshop selectWorkshop={selectWorkshop} partes={partes} setSelectWorkshop={setSelectWorkshop} setPartes={setPartes}/>;
   }
-
-  
 
   return (
     <div className="adminHomeContainer">
       <h1>Dashboard</h1>
 
       <div className="card">
-        <h2>Talleres</h2>
-        {workshopsList.map((el) => (
-          <div
-            className="tallerButton"
-            id={el.id}
-            key={el.id}
-            onClick={handleclickSelectWorkshop}
-          >
-            {el.name}
-          </div>
-        ))}
-      </div>
-
-      <div className="card">
         <h2>Total Partes</h2>
-        <Dankmemes workshopsList={workshopsList} partes={partes}/>
+        <ChartPartes workshopsList={workshopsList} partes={partes} />
         {workshopsList.map((workshop) => (
           <div key={workshop.id} className="flex">
             <p>
@@ -106,12 +79,17 @@ const AdminHome = () => {
         ))}
       </div>
       <div className="card">
-        <p>Activos</p>
-        <p>Inactivos</p>
-        <input type="date" />
+        <h2>Talleres</h2>
+        {workshopsList.map((el) => (
+          <div className="tallerButton" id={el.id} key={el.id}>
+            <b onClick={handleclickSelectWorkshop}>{el.name}</b>
+          </div>
+        ))}
       </div>
-
-      
+      <div className="card">
+        <h2>Ranking de servicios</h2>
+        <ChartServices workshopsList={workshopsList} partes={partes} />
+      </div>
     </div>
   );
 };

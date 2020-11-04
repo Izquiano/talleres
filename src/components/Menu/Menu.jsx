@@ -21,11 +21,12 @@ const Menu = () => {
         {
           open ? (
           <ul className="menu">
-            <li><Link to="/home"><b>Home</b></Link></li>
-            <li><Link to="/dar-parte">Dar Parte</Link></li>
-            <li><Link to="/coches">Coches</Link></li>
-            <li><Link to="/consultar-partes">Consultar partes</Link></li>
-            <li><Link to="/user">Información de registro</Link></li>
+            <li><Link onClick={handleClick} to="/home"><b>Home</b></Link></li>
+            <li><Link onClick={handleClick} to="/dar-parte">Dar Parte</Link></li>
+            <li><Link onClick={handleClick} to="/coches">Coches</Link></li>
+            <li><Link onClick={handleClick} to="/consultar-partes">Consultar partes</Link></li>
+            <li><Link onClick={handleClick} to="/user">Información de registro</Link></li>
+            <li className="dashboard"><Link onClick={handleClick} to="/dashboard"><b>Dashboard</b></Link></li>
           </ul>): null
           
         }

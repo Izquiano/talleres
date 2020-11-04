@@ -1,0 +1,44 @@
+.adminWorkshopContainer {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.card {
+  margin: 20px auto;
+  border-radius: 20px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.16);
+  padding: 10px;
+  text-align: left;
+}
+
+.adminWorkshopContainer span.active {
+  font-weight: 600;
+  color: var(--naranja);
+}
+
+.adminWorkshopContainer .flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.adminWorkshopContainer .cerrarParte {
+  padding: 5px 10px;
+  background-color: grey;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 50px;
+  margin: 10px 0
+}
+
+.adminWorkshopContainer .denegarParte {
+  padding: 5px 10px;
+  background-color: red;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 50px;
+  margin: 10px 0
+}

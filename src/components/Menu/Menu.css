@@ -23,6 +23,8 @@ ul.menu{
   transform: translateX(-50%);
   list-style: none;
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.16);
+  border-radius: 0px 0px 20px 20px;
+  overflow: hidden;
 }
 
 ul.menu a{ 
@@ -30,4 +32,11 @@ ul.menu a{
   padding: 20px;
   display: block;
   border-bottom: 1px solid var(--naranja);
+}
+
+li.dashboard{
+  background-color: var(--naranja);
+}
+li.dashboard a{
+  color: white
 }

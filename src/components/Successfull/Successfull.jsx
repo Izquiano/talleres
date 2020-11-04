@@ -10,7 +10,7 @@ const Successfull = () => {
   size="small"
   />
   <img src="/icons/ic_Check.svg" alt="icon"/>
-      <p>Datos cambiados con éxito</p>
+      <p>Proceso realizado con éxito</p>
      
       
       <Link to="/home">Continuar</Link>

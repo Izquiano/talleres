@@ -30,4 +30,6 @@ export const detalleParte = ( parteId ) => http.get(`${process.env.REACT_APP_API
 
 export const workshops = ( ) => http.get(`${process.env.REACT_APP_API_URL}/workshops`)
 export const listarPartes = ( ) => http.get(`${process.env.REACT_APP_API_URL}/services-resume`)
+export const eliminarParte = ( parteId ) => http.delete(`${process.env.REACT_APP_API_URL}/services-resume/delete/${parteId}`)
+export const cerrarParte = ( parteId, active ) => http.patch(`${process.env.REACT_APP_API_URL}/cerrar-parte/${parteId}`,{active})
 

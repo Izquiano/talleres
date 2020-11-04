@@ -6,17 +6,16 @@ import { FormatDate } from "../../../Helpers/Helpers";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import { addParte } from "../../../services/ApiClient";
 
-const Step4 = ({ user, car, services, date, workshop }) => {
-  const [parte, setParte] = useState({});
-  const [fullUser, setFullUser] = useState({});
+const Step4 = ({  car, services, date, workshop }) => {
+  
   const [fullCar, setFullCar] = useState({});
   const [servicesForCar, setServicesForCar] = useState([]);
   const [redirectTo, setRedirectTo] = useState(false); 
-  const authContext = useAuthContext();
+  const {user} = useAuthContext();
 
-  useEffect(() => {
-    setParte({ user, car, date, workshop });
-  }, []);
+  // useEffect(() => {
+  //   setParte({ user, car, date, workshop });
+  // }, []);
 
   useEffect(() => {
     let servicesFiltered = [];
@@ -32,13 +31,13 @@ const Step4 = ({ user, car, services, date, workshop }) => {
     setServicesForCar(servicesFiltered);
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/user/${user}`)
-      .then((response) => {
-        setFullUser(response.data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_API_URL}/user/${user}`)
+  //     .then((response) => {
+  //       setFullUser(response.data);
+  //     });
+  // }, []);
 
   useEffect(() => {
     axios
@@ -72,7 +71,7 @@ const Step4 = ({ user, car, services, date, workshop }) => {
       <div>
         <b>Usuario</b>
       </div>
-      <span>{fullUser.name}</span>
+      <span>{user.name}</span>
       <div>
         <b>Vehículo</b>
       </div>

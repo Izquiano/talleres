@@ -65,7 +65,7 @@ const ConsultarPartes = () => {
             >
               <div className="cardParte">
                 <div>
-                  Activo: <b>{el.active ? "Si" : "No"}</b>
+                  Activo: {el.active ? <b className="active">Sí</b>: <b>No</b> }
                 </div>
                 <div>
                   Vehículo: <b>{el.car.registration}</b>

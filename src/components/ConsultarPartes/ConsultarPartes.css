@@ -11,6 +11,10 @@
   border-radius: 20px;
   text-align: left;
 }
+.cardParte b.active{
+  color: var(--naranja)
+ 
+}
 
 .consultarPartesContainer a {
   text-decoration: none;

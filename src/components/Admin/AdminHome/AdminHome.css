@@ -16,13 +16,15 @@
   text-align: left;
   
 }
-.adminHomeContainer .card .tallerButton{
+.adminHomeContainer .card .tallerButton b{
   padding: 10px;
   margin: 10px auto;
   text-align: center;
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.16);
   border-radius: 20px;
-  color: var(--naranja)
+  color: white;
+  background-color: var(--naranja);
+  display: block
 }
 .adminHomeContainer .card p.left{
   display: inline-block;
@@ -32,7 +34,8 @@
 .adminHomeContainer .flex{
   display: flex;
   justify-content: space-between;
-  margin: 10px auto
+  margin: 10px auto;
+  width: 97%;
 }
 
 
@@ -40,12 +43,7 @@
   color: var(--naranja);
 }
 
-/* .chart{
-  width: 500px;
-  height: 500px;
-} */
-
-text.recharts-text.recharts-cartesian-axis-tick-value {
-  font-size: 0.7em;
+.adminHomeContainer .card h2{
+  text-align: center;
 }
 

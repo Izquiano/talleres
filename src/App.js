@@ -23,6 +23,7 @@ import {
   NotAuthenticatedRoute,
 } from "./components/AuthenticatedRoute/AuthenticatedRoute";
 
+
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   useEffect(() => {
@@ -36,6 +37,7 @@ function App() {
       <Switch>
         {/* Admin */}
         <Route exact path="/dashboard" component={AdminHome} />
+        
 
         {/* User */}
         {/* <NotAuthenticatedRoute

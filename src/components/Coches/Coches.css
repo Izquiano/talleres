@@ -22,7 +22,7 @@
 .listCochesContainer button{
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.16);
   border: none;
- 
+ margin: 5px auto;
   border-radius: 50px;
   width: 85%;
   background-color: white;

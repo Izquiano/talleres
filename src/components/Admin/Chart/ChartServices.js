@@ -25,25 +25,21 @@ const ChartPartes = () => {
         axios
           .get(`${process.env.REACT_APP_API_URL}/services-resume`)
           .then((res) => {
-            
             let todosLosServiciosHechos = res.data
               .map((el) => el.services)
-              .flat().map(el => el.name);
-              console.log(todosLosServiciosHechos);
+              .flat()
+              .map((el) => el.name);
+
             for (let i = 0; i < todosLosServiciosNombres.length; i++) {
               var array = todosLosServiciosHechos;
-
-        
 
               array.forEach(function (numero) {
                 repetidos[numero] = (repetidos[numero] || 0) + 1;
               });
-      
-              // console.log(repetidos);
 
+             
             }
           });
-        
       })
       .catch((err) => {
         console.log(err);

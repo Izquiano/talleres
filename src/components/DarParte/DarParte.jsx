@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./DarParte.css";
 import axios from "axios";
 import Step0 from "../Steps/Step0/Step0";
-import ChapaYPintura from '../ChapaYPintura/ChapaYPintura'
+import ChapaYPintura from "../ChapaYPintura/ChapaYPintura";
 import Step1 from "../Steps/Step1/Step1";
 import Step2 from "../Steps/Step2/Step2";
 import Step3 from "../Steps/Step3/Step3";
@@ -15,7 +15,8 @@ const DarParte = () => {
     services: [],
     cars: [],
     motivo: "",
-    workshop: ""
+    workshop: "",
+    damagedParts: [],
   });
   const [servicesList, setServicesList] = useState([]);
   const [step, setStep] = useState(0);
@@ -66,11 +67,8 @@ const DarParte = () => {
   };
 
   const handleChangeServices = (e) => {
-    
     if (state.services.includes(e.target.id)) {
-      const servicesResult = state.services.filter(
-        (el) => el !== e.target.id
-      );
+      const servicesResult = state.services.filter((el) => el !== e.target.id);
       setState({ ...state, services: servicesResult });
     } else {
       // var joined = state.services.push(e.target.id);
@@ -78,15 +76,46 @@ const DarParte = () => {
       setState((prev) => {
         return {
           ...state,
-          services: [...state.services, e.target.id]
+          services: [...state.services, e.target.id],
         };
       });
     }
-  }; 
+  };
+
+  const handleClickDamagedParts = (e) => {
+    let urlImage = e.target.attributes.src.nodeValue;
+    const text = "_naranja";
+    if (urlImage.includes(text)) {
+      const newUrlImage = urlImage.replace(text, "");
+      e.target.setAttribute("src", newUrlImage);
+      const partsResult = state.damagedParts.filter(
+        (el) => el !== e.target.dataset.part
+      );
+      setState((prev) => {
+        return {
+          ...state,
+          damagedParts: [...partsResult],
+        };
+      });
+    } else {
+      const newUrlImage = [
+        urlImage.slice(0, -4),
+        text,
+        urlImage.slice(-4),
+      ].join("");
+      e.target.setAttribute("src", newUrlImage);
+      setState((prev) => {
+        return {
+          ...state,
+          damagedParts: [...state.damagedParts, e.target.dataset.part],
+        };
+      });
+    }
+  };
 
   const handleChangeSelected = (selection) => {
-    setState({ ...state, workshop: selection});
-    setSelected(selection)
+    setState({ ...state, workshop: selection });
+    setSelected(selection);
   };
 
   const handleDayClick = (date, { sunday, disabled }) => {
@@ -117,8 +146,12 @@ const DarParte = () => {
       {/* FIN primera pantalla */}
       {/* Segunda pantalla */}
       {step === 1 && state.motivo === "Chapa y pintura" ? (
-        <ChapaYPintura state={state}/>
-      ): null}
+        <ChapaYPintura
+          state={state}
+          handleClickDamagedParts={handleClickDamagedParts}
+          nextStep={nextStep}
+        />
+      ) : null}
 
       {step === 1 && state.motivo === "Mecánica y mantenimiento" ? (
         <Step1
@@ -151,7 +184,14 @@ const DarParte = () => {
       {/* Quinta pantalla  Resumen*/}
 
       {step === 4 ? (
-        <Step4 user={state.user} car={state.car} services={state.services} date={day} workshop={selected} />
+        <Step4
+          user={state.user}
+          car={state.car}
+          services={state.services}
+          date={day}
+          workshop={selected}
+          damagedParts={state.damagedParts}
+        />
       ) : null}
     </div>
   );

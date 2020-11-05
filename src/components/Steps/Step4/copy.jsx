@@ -6,17 +6,15 @@ import { FormatDate } from "../../../Helpers/Helpers";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import { addParte } from "../../../services/ApiClient";
 
-const Step4 = ({ user, car, services, date, workshop, damagedParts }) => {
-  const [parte, setParte] = useState({});
-  const [fullUser, setFullUser] = useState({});
+const Step4 = ({ car, services, date, workshop, damagedParts }) => {
   const [fullCar, setFullCar] = useState({});
   const [servicesForCar, setServicesForCar] = useState([]);
-  const [redirectTo, setRedirectTo] = useState(false); 
-  // const authContext = useAuthContext();
-
-  useEffect(() => {
-    setParte({ user, car, date, workshop });
-  }, []);
+  const [redirectTo, setRedirectTo] = useState(false);
+  const { user } = useAuthContext();
+ const userId = user.id
+  // useEffect(() => {
+  //   setParte({ user, car, date, workshop });
+  // }, []);
 
   useEffect(() => {
     let servicesFiltered = [];
@@ -32,13 +30,13 @@ const Step4 = ({ user, car, services, date, workshop, damagedParts }) => {
     setServicesForCar(servicesFiltered);
   }, []);
 
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/user/${user}`)
-      .then((response) => {
-        setFullUser(response.data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_API_URL}/user/${user}`)
+  //     .then((response) => {
+  //       setFullUser(response.data);
+  //     });
+  // }, []);
 
   useEffect(() => {
     axios
@@ -48,12 +46,13 @@ const Step4 = ({ user, car, services, date, workshop, damagedParts }) => {
       });
   }, []);
 
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    addParte({ date, user, car, services, workshop, damagedParts })
+    addParte({ date, userId, car, services, workshop, damagedParts })
       .then((response) => {
         // authContext.login(response);
-        
+
         setRedirectTo(true);
       })
       .catch((err) => console.log(err));
@@ -72,28 +71,31 @@ const Step4 = ({ user, car, services, date, workshop, damagedParts }) => {
       <div>
         <b>Usuario</b>
       </div>
-      <span>{fullUser.name}</span>
+      <span>{user.name}</span>
       <div>
         <b>Vehículo</b>
       </div>
       <span>{fullCar.registration}</span>
-    
-      <div>
-        {servicesForCar.length > 0 ? (<div><b>Servicios</b></div>): (null)}
-        
-      </div>
-      {servicesForCar.map((el) => (
-        <div key={el}>{el}</div>
-      ))}
-       <div>
-       {damagedParts.length > 0 ? (<div><b>Partes Dañadas</b></div>): (null)}
-        
-      </div>
-      {damagedParts.map((el) => (
-        <div key={el}>{el}</div>
-      ))}
-      
-
+      {servicesForCar.length > 0 ? (
+        <>
+          <div>
+            <b>Servicios</b>
+          </div>
+          {servicesForCar.map((el) => (
+            <div key={el}>{el}</div>
+          ))}{" "}
+        </>
+      ) : null}
+        {damagedParts.length > 0 ? (
+        <>
+          <div>
+            <b>Partes dañadas</b>
+          </div>
+          {damagedParts.map((el) => (
+            <div key={el}>{el}</div>
+          ))}{" "}
+        </>
+      ) : null}
 
       <div>
         <b>Fecha</b>

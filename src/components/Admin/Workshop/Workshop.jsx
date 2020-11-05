@@ -15,9 +15,8 @@ const Workshop = ({ selectWorkshop, partes, setSelectWorkshop, setPartes }) => {
   const [redirectTo, setRedirectTo] = useState(false);
 
   useEffect(() => {
-    console.log();
     const partesList = partes.filter((el) => el.workshop.id === selectWorkshop);
-    console.log(partesList[0]);
+
     setState(partesList);
   }, []);
 
@@ -33,19 +32,17 @@ const Workshop = ({ selectWorkshop, partes, setSelectWorkshop, setPartes }) => {
 
   const handleClickDelete = (e) => {
     e.preventDefault();
-    console.log(e.target);
+
     eliminarParte(e.target.id).then((response) => {
-      console.log(e.target);
-      setSelectWorkshop(null)
+      setSelectWorkshop(null);
       setRedirectTo(true);
     });
   };
   const handleClickCloseParte = (e) => {
     e.preventDefault();
-    console.log(e.target);
-    cerrarParte(e.target.id, {active: false}).then((response) => {
-      console.log(e.target);
-      setSelectWorkshop(null)
+
+    cerrarParte(e.target.id, { active: false }).then((response) => {
+      setSelectWorkshop(null);
       // setPartes([])
       setRedirectTo(true);
     });
@@ -113,30 +110,25 @@ const Workshop = ({ selectWorkshop, partes, setSelectWorkshop, setPartes }) => {
             </p>
           ))}
           <div style={el.active ? { display: "block" } : { display: "none" }}>
-          <p> Acciones:</p>
-          <div className="flex">
+            <p> Acciones:</p>
+            <div className="flex">
+              <div
+                id={el.id}
+                onClick={handleClickCloseParte}
+                className="cerrarParte"
+              >
+                Cerrar Parte
+              </div>
 
-            <div
-              id={el.id}
-              onClick={handleClickCloseParte}
-              className="cerrarParte"
-              
-            >
-              Cerrar Parte
-            </div>
-
-            <div
-              className="denegarParte"
-              id={el.id}
-              onClick={handleClickDelete}
-              
-            >
-              Denegar Parte
+              <div
+                className="denegarParte"
+                id={el.id}
+                onClick={handleClickDelete}
+              >
+                Denegar Parte
+              </div>
             </div>
           </div>
-
-          </div>
-          
         </div>
       ))}
     </div>

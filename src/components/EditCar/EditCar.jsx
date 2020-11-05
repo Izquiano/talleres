@@ -3,13 +3,12 @@ import "./EditCar.css";
 
 import Button from "../Button/Button";
 import Input from "../Input/Input";
-import { useAuthContext } from "../../contexts/AuthContext"; 
+import { useAuthContext } from "../../contexts/AuthContext";
 import { editCar } from "../../services/ApiClient";
 
 import { Redirect } from "react-router-dom";
 
 import { eliminarCoche } from "../../services/ApiClient";
-
 
 const EditCar = (props) => {
   const [state, setState] = useState({
@@ -21,9 +20,8 @@ const EditCar = (props) => {
   });
 
   const [redirectTo, setRedirectTo] = useState(false);
-  const [error, setError] = useState()
+  const [error, setError] = useState();
   const authContext = useAuthContext();
-  
 
   useEffect(() => {
     setState(props.car);
@@ -31,35 +29,30 @@ const EditCar = (props) => {
 
   const deleteCar = (e) => {
     e.preventDefault();
-    console.log(state.id)
+
     eliminarCoche(state.id).then((response) => {
       // authContext.login(response);
-      
+
       setRedirectTo(true);
     });
   };
 
-
-
-
   const sendData = (e) => {
     e.preventDefault();
     editCar({
-        carBrand: state.carBrand,
-        model: state.model,
-        year: state.year,
-        registration: state.registration,
-        frameNumber: state.frameNumber,
-        user: state.user,
-        id: state.id
-      }).then((response) => {
+      carBrand: state.carBrand,
+      model: state.model,
+      year: state.year,
+      registration: state.registration,
+      frameNumber: state.frameNumber,
+      user: state.user,
+      id: state.id,
+    }).then((response) => {
       // authContext.editCar(response);
-      console.log(response);
+
       window.location.assign("/coches");
     });
   };
-
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -79,9 +72,7 @@ const EditCar = (props) => {
   }
   return (
     <div>
-      {
-        error ? (<div>{error}</div>) : null
-      }
+      {error ? <div>{error}</div> : null}
       {state !== null ? (
         <div className="editCocheContainer">
           <h1>Editar Coche</h1>

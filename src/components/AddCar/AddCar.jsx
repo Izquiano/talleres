@@ -17,7 +17,7 @@ const AddCar = () => {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     setState({ ...state, user: user.id });
-  }, []);
+  }, []); // sline
 
   const sendData = (e) => {
     e.preventDefault();
@@ -28,7 +28,6 @@ const AddCar = () => {
     axios
       .post(`${process.env.REACT_APP_API_URL}/cars`, state)
       .then((response) => {
-        console.log(response.data);
         window.location.assign("/coches");
       });
   };

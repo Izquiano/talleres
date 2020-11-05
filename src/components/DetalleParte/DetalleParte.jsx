@@ -15,7 +15,6 @@ const DetalleParte = (props) => {
   useEffect(() => {
     detalleParte(props.parteId).then((response) => {
       setState(response);
-      console.log(response);
     });
   }, []);
 
@@ -30,13 +29,12 @@ const DetalleParte = (props) => {
     deleteParte(state.id)
       .then((response) => {
         // authContext.login(response);
-        
-        console.log("response");
-        setRedirectTo(true)
-    }).catch((err) => console.log(err));
+
+        setRedirectTo(true);
+      })
+      .catch((err) => console.log(err));
   };
-  
-  
+
   if (!state) {
     return <div>Cargando...</div>;
   }
@@ -67,7 +65,9 @@ const DetalleParte = (props) => {
         <p>Taller: {state.workshop.name}</p>
         <p>Fecha: {FormatDate(state.date)}</p>
 
-        <div className="delete" onClick={handleClick}>Borrar</div>
+        <div className="delete" onClick={handleClick}>
+          Borrar
+        </div>
       </div>
     </div>
   );

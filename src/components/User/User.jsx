@@ -14,12 +14,10 @@ const User = () => {
   const userC = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    console.log(userC);
-
     userProfile(userC.id)
       .then((response) => {
         // authContext.login(response);
-        console.log(response);
+
         setState(response);
       })
       .catch((err) => console.log(err));
@@ -28,26 +26,22 @@ const User = () => {
   const sendData = (e) => {
     e.preventDefault();
     editUser({
-        userId: userC.id,
-        name: state.name,
-        email: state.email
-        
-      }).then((response) => {
+      userId: userC.id,
+      name: state.name,
+      email: state.email,
+    }).then((response) => {
       // authContext.editCar(response);
-    
+
       setRedirectTo(true);
     });
   };
   const logout = () => {
-    
-    
     Logout().then((response) => {
       // authContext.login(response);
-      
+
       window.location.assign("/");
     });
   };
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -59,7 +53,6 @@ const User = () => {
     });
   };
 
-
   if (!state) {
     return <div>Loading...</div>;
   }
@@ -70,26 +63,24 @@ const User = () => {
     <div className="userContainer">
       <h1>Perfil Usuario</h1>
       <form onSubmit={sendData}>
-            <Input
-              type="text"
-              name="name"
-              placeholder="Nombre"
-              onChange={handleChange}
-              value={state.name}
-            />
-            <Input
-              type="text"
-              name="email"
-              placeholder="Email"
-              onChange={handleChange}
-              value={state.email}
-            />
-            
-           <Button type="submit" text="Enviar" />
-          </form>
-          <div onClick={logout}>Logout</div>
+        <Input
+          type="text"
+          name="name"
+          placeholder="Nombre"
+          onChange={handleChange}
+          value={state.name}
+        />
+        <Input
+          type="text"
+          name="email"
+          placeholder="Email"
+          onChange={handleChange}
+          value={state.email}
+        />
 
-      
+        <Button type="submit" text="Enviar" />
+      </form>
+      <div onClick={logout}>Logout</div>
     </div>
   );
 };

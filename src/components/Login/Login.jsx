@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import "./Login.css";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import { useAuthContext } from "../../contexts/AuthContext"; 
+import { useAuthContext } from "../../contexts/AuthContext";
 import LinkButton from "../LinkButton/LinkButton";
 
 import { login } from "../../services/ApiClient";
@@ -13,21 +13,22 @@ const Login = (props) => {
     email: "",
     password: "",
   });
-  const [error, SetError] = useState("")
+  const [error, SetError] = useState("");
 
-  const [redirectTo, setRedirecTo] = useState (false)
+  const [redirectTo, setRedirecTo] = useState(false);
   const [visible, setVisible] = useState(false);
 
   const authContext = useAuthContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(state).then((response) => {
-      
-      authContext.login(response);
-      console.log(response);
-      setRedirecTo(true)
-    }).catch(err => console.log(err))
+    login(state)
+      .then((response) => {
+        authContext.login(response);
+
+        setRedirecTo(true);
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleChange = (e) => {
@@ -47,8 +48,8 @@ const Login = (props) => {
     setVisible(!visible);
   };
 
-  if(redirectTo){
-    return <Redirect to="/home" />
+  if (redirectTo) {
+    return <Redirect to="/home" />;
   }
 
   return (
@@ -72,16 +73,19 @@ const Login = (props) => {
           icon="password"
           onChange={handleChange}
           value={state.password}
-          
         />
         <Button type="submit" text="Entrar" />
       </form>
 
       <p>O inicia sesión con</p>
-        <div className="socialLogin">
-          <LinkButton href={`${process.env.REACT_APP_API_URL}/auth/google`} text="Google" icon="google" />
-          <LinkButton href="/auth/facebook" text="Facebook" icon="facebook" />
-        </div>
+      <div className="socialLogin">
+        <LinkButton
+          href={`${process.env.REACT_APP_API_URL}/auth/google`}
+          text="Google"
+          icon="google"
+        />
+        <LinkButton href="/auth/facebook" text="Facebook" icon="facebook" />
+      </div>
 
       <div className="footer">
         <p>¿Aún no estás registrado?</p>

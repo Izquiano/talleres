@@ -96,7 +96,12 @@ const ConsultarPartes = ({history}) => {
       );
     }
   } else {
-    return "No hay partes";
+    return (
+      <>
+      <Menu history={history}  step={0}/>
+      <h1>No hay partes</h1>
+      </>
+    )
   }
 };
 

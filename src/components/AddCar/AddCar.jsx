@@ -3,8 +3,8 @@ import "./AddCar.css";
 import axios from "axios";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
-
-const AddCar = () => {
+import Menu from "../Menu/Menu"
+const AddCar = ({history}) => {
   const [state, setState] = useState({
     user: "",
     carBrand: "",
@@ -43,6 +43,8 @@ const AddCar = () => {
   };
 
   return (
+    <>
+    <Menu history={history}  step={0}/>
     <div className="addCochesContainer">
       <h1>Añadir Coche</h1>
       <form onSubmit={sendData}>
@@ -85,6 +87,7 @@ const AddCar = () => {
         <Button type="submit" text="Enviar" />
       </form>
     </div>
+    </>
   );
 };
 

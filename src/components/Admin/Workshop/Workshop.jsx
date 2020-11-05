@@ -4,6 +4,7 @@ import {
   workshops,
   eliminarParte,
   cerrarParte,
+  confirmParte
 } from "../../../services/ApiClient";
 import { FormatDate } from "../../../Helpers/Helpers";
 import { Redirect } from "react-router-dom";
@@ -48,6 +49,16 @@ const Workshop = ({ selectWorkshop, partes, setSelectWorkshop, history }) => {
       setRedirectTo(true);
     });
   };
+
+  const handleClickConfirm = (e) => {
+    
+    confirmParte(e.target.id).then((response) => {
+      setSelectWorkshop(null);
+      // setPartes([])
+      setRedirectTo(true);
+
+    })
+  }
 
   if (redirectTo) {
     return <Redirect to="/dashboard" />;
@@ -137,7 +148,20 @@ const Workshop = ({ selectWorkshop, partes, setSelectWorkshop, history }) => {
               >
                 Denegar Parte
               </div>
+              
+              
+
+              
             </div>
+            {!el.confirmation ? (
+            <><p>Aún no está confirmada la reserva:</p> 
+            <div
+                className="confirmarParte"
+                id={el.id}
+                onClick={handleClickConfirm}
+              >
+                Confirmar Reserva
+              </div></>): null}
           </div>
         </div>
       ))}

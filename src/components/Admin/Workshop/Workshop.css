@@ -42,3 +42,16 @@
   border-radius: 50px;
   margin: 10px 0
 }
+
+.confirmarParte{
+  padding: 5px 10px;
+  background-color:var(--naranja);
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 50px;
+  margin: 10px 0;
+width: 100%;
+text-align: center;
+}

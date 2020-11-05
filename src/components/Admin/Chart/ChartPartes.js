@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Line, Bar, Doughnut } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import axios from "axios";
-import { workshops } from "../../../services/ApiClient";
+
 
 const ChartPartes = () => {
   const [chartData, setChartData] = useState({});
-  const [labels, setLabels] = useState([]);
-  const [data, setData] = useState([]);
+  const [labels, setLabels] = useState([]);// eslint-disable-line
+  const [data, setData] = useState([]);// eslint-disable-line
 
   const chart = () => {
     let numeroPartes = [];
@@ -14,20 +14,18 @@ const ChartPartes = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/services-resume`)
       .then((res) => {
-        
         const workshops = res.data.map((el) => el.workshop.name);
-      
+
         function onlyUnique(value, index, self) {
           return self.indexOf(value) === index;
         }
         var uniqueName = workshops.filter(onlyUnique);
-        
 
         for (let i = 0; i < uniqueName.length; i++) {
           const dataForEachWorkshop = res.data.filter(
             (el) => el.workshop.name === uniqueName[i]
           );
-          
+
           numeroPartes.push(dataForEachWorkshop.length);
           nombresTalleres.push(uniqueName[i]);
         }
@@ -38,9 +36,12 @@ const ChartPartes = () => {
             {
               label: "Total de partes",
               data: numeroPartes,
-              backgroundColor: ["rgba(255, 121, 0, 0.7)", "rgba(255, 121, 0, 0.4)"],
+              backgroundColor: [
+                "rgba(255, 121, 0, 0.7)",
+                "rgba(255, 121, 0, 0.4)",
+              ],
               borderWidth: 2,
-              borderColor: ["rgb(255, 121, 0)", "rgba(255, 121, 0, 0.5)"]
+              borderColor: ["rgb(255, 121, 0)", "rgba(255, 121, 0, 0.5)"],
             },
           ],
         });

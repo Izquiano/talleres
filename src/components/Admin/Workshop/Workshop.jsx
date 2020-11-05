@@ -6,9 +6,10 @@ import {
   cerrarParte,
 } from "../../../services/ApiClient";
 import { FormatDate } from "../../../Helpers/Helpers";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import Menu from '../../Menu/Menu'
 
-const Workshop = ({ selectWorkshop, partes, setSelectWorkshop, setPartes }) => {
+const Workshop = ({ selectWorkshop, partes, setSelectWorkshop, history }) => {
   const [state, setState] = useState([]);
   const [workshop, setWorkshop] = useState([{}]);
   const [actives, setActives] = useState(false);
@@ -18,13 +19,13 @@ const Workshop = ({ selectWorkshop, partes, setSelectWorkshop, setPartes }) => {
     const partesList = partes.filter((el) => el.workshop.id === selectWorkshop);
 
     setState(partesList);
-  }, []);
+  }, []);// eslint-disable-line
 
   useEffect(() => {
     workshops().then((response) =>
       setWorkshop(response.filter((el) => el.id === selectWorkshop))
     );
-  }, []);
+  }, []);// eslint-disable-line
 
   const handleClickActive = () => {
     setActives(!actives);
@@ -53,6 +54,8 @@ const Workshop = ({ selectWorkshop, partes, setSelectWorkshop, setPartes }) => {
   }
 
   return (
+    <>
+    <Menu history={history}  step={0} />
     <div className="adminWorkshopContainer">
       <h1>Taller</h1>
       <h2>{workshop[0].name}</h2>
@@ -103,14 +106,21 @@ const Workshop = ({ selectWorkshop, partes, setSelectWorkshop, setPartes }) => {
           <p>
             Nº Bastidor: <b>{el.car.frameNumber}</b>
           </p>
-          <p>Servicios a realizar:</p>
+          
+          {el.services.length > 0 ? <p>Servicios a realizar:</p> : null}
           {el.services.map((el) => (
             <p key={el.id}>
               <b>{el.name}</b>
             </p>
           ))}
+          {el.damagedParts.length > 0 ? <p>Reparaciones de chapa y pintura:</p> : null}
+          {el.damagedParts.map((el) => (
+            <p key={el}>
+              <b>{el}</b>
+            </p>
+          ))}
           <div style={el.active ? { display: "block" } : { display: "none" }}>
-            <p> Acciones:</p>
+            <p>Acciones:</p>
             <div className="flex">
               <div
                 id={el.id}
@@ -132,6 +142,7 @@ const Workshop = ({ selectWorkshop, partes, setSelectWorkshop, setPartes }) => {
         </div>
       ))}
     </div>
+    </>
   );
 };
 

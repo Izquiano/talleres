@@ -5,18 +5,20 @@ import { FormatDate } from "../../Helpers/Helpers";
 import "./DetalleParte.css";
 import { deleteParte } from "../../services/ApiClient";
 import { Redirect } from "react-router-dom";
+import Menu from '../Menu/Menu'
 
 const DetalleParte = (props) => {
   const [state, setState] = useState(null);
   const [redirectTo, setRedirectTo] = useState(false);
 
-  const { parteId } = useAuthContext();
+  const { parteId } = useAuthContext();// eslint-disable-line
 
   useEffect(() => {
     detalleParte(props.parteId).then((response) => {
       setState(response);
+      
     });
-  }, []);
+  }, []);// eslint-disable-line
 
   const arrayUniqueServices = (array) => {
     return array
@@ -42,6 +44,8 @@ const DetalleParte = (props) => {
     return <Redirect to="/home" />;
   }
   return (
+    <>
+    <Menu history={props.history}  step={0}/>
     <div className="detalleParteContainer">
       <h1>Detalle del parte</h1>
       <div className="cardParte">
@@ -52,7 +56,9 @@ const DetalleParte = (props) => {
           Vehículo: <b>{state.car.registration}</b>
         </p>
         <p>
-          Motivo: <b>{arrayUniqueServices(state.services)}</b>
+          Motivo: 
+          <b>{arrayUniqueServices(state.services)}</b>
+          {state.damagedParts.length >0 ? <b>Chapa y pintura</b>: null}
         </p>
         <p>
           Servicios:{" "}
@@ -61,7 +67,13 @@ const DetalleParte = (props) => {
               <b>{el.name}</b>
             </span>
           ))}
+          {state.damagedParts.map((el) => (
+            <span className="block" key={el}>
+              <b>{el}</b>
+            </span>
+          ))}
         </p>
+       
         <p>Taller: {state.workshop.name}</p>
         <p>Fecha: {FormatDate(state.date)}</p>
 
@@ -70,6 +82,7 @@ const DetalleParte = (props) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 export default DetalleParte;

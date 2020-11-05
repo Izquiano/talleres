@@ -20,12 +20,12 @@ const EditCar = (props) => {
   });
 
   const [redirectTo, setRedirectTo] = useState(false);
-  const [error, setError] = useState();
-  const authContext = useAuthContext();
+  const [error, setError] = useState();// eslint-disable-line
+  const authContext = useAuthContext();// eslint-disable-line
 
   useEffect(() => {
     setState(props.car);
-  }, []);
+  }, []);// eslint-disable-line
 
   const deleteCar = (e) => {
     e.preventDefault();

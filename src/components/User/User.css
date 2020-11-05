@@ -11,3 +11,7 @@
   margin: 30px auto 0px;
   border-radius: 20px;
 }
+
+.userContainer .logout{
+  color: red;
+}

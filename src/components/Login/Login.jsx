@@ -13,7 +13,7 @@ const Login = (props) => {
     email: "",
     password: "",
   });
-  const [error, SetError] = useState("");
+
 
   const [redirectTo, setRedirecTo] = useState(false);
   const [visible, setVisible] = useState(false);

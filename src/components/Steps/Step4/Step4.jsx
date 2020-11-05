@@ -3,11 +3,11 @@ import { Redirect } from "react-router-dom";
 import "./Step4.css";
 import axios from "axios";
 import { FormatDate } from "../../../Helpers/Helpers";
-import { useAuthContext } from "../../../contexts/AuthContext";
+
 import { addParte } from "../../../services/ApiClient";
 
 const Step4 = ({ user, car, services, date, workshop, damagedParts }) => {
-  const [parte, setParte] = useState({});
+  const [parte, setParte] = useState({});// eslint-disable-line
   const [fullUser, setFullUser] = useState({});
   const [fullCar, setFullCar] = useState({});
   const [servicesForCar, setServicesForCar] = useState([]);
@@ -16,7 +16,7 @@ const Step4 = ({ user, car, services, date, workshop, damagedParts }) => {
 
   useEffect(() => {
     setParte({ user, car, date, workshop });
-  }, []);
+  }, []);// eslint-disable-line
 
   useEffect(() => {
     let servicesFiltered = [];
@@ -30,7 +30,7 @@ const Step4 = ({ user, car, services, date, workshop, damagedParts }) => {
     });
 
     setServicesForCar(servicesFiltered);
-  }, []);
+  }, []);// eslint-disable-line
 
   useEffect(() => {
     axios
@@ -38,7 +38,7 @@ const Step4 = ({ user, car, services, date, workshop, damagedParts }) => {
       .then((response) => {
         setFullUser(response.data);
       });
-  }, []);
+  }, []);// eslint-disable-line
 
   useEffect(() => {
     axios
@@ -46,7 +46,7 @@ const Step4 = ({ user, car, services, date, workshop, damagedParts }) => {
       .then((response) => {
         setFullCar(response.data);
       });
-  }, []);
+  }, []);// eslint-disable-line
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -17,7 +17,7 @@ const AddCar = () => {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     setState({ ...state, user: user.id });
-  }, []); // sline
+  }, []); // eslint-disable-line
 
   const sendData = (e) => {
     e.preventDefault();

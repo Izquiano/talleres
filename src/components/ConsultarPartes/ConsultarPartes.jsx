@@ -4,8 +4,9 @@ import { consultarPartes } from "../../services/ApiClient";
 import "./ConsultarPartes.css";
 import DetalleParte from "../DetalleParte/DetalleParte";
 import { FormatDate } from "../../Helpers/Helpers";
+import Menu from '../Menu/Menu'
 
-const ConsultarPartes = () => {
+const ConsultarPartes = ({history}) => {
   const [partes, setPartes] = useState(null);
   const [parteId, setParteId] = useState(null);
   const [actives, setActives] = useState(false);
@@ -15,9 +16,10 @@ const ConsultarPartes = () => {
   useEffect(() => {
     consultarPartes(user.id).then((response) => {
       setPartes(response);
+     
       
     });
-  }, []);
+  }, []);// eslint-disable-line
 
   const handleClick = (e) => {
     setParteId(e.target.parentNode.parentNode.id);
@@ -42,9 +44,11 @@ const ConsultarPartes = () => {
 
   if (partes) {
     if (parteId) {
-      return <DetalleParte parteId={parteId} setParteId={setParteId}/>;
+      return <DetalleParte parteId={parteId} setParteId={setParteId} history={history}/>;
     } else {
       return (
+        <>
+        <Menu history={history}  step={0}/>
         <div className="consultarPartesContainer">
           <h1>Consultar partes</h1>
           <div className="checkActiveContainer">
@@ -77,6 +81,7 @@ const ConsultarPartes = () => {
                       <b>{el}</b>
                     </span>
                   ))}
+                  {el.damagedParts.length > 0 ? <b>Chapa y pintura</b>: null}
                 </div>
                 <div>
                   Taller: {el.workshop.name} 
@@ -87,6 +92,7 @@ const ConsultarPartes = () => {
             </div>
           ))}
         </div>
+        </>
       );
     }
   } else {

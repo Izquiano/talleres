@@ -5,12 +5,13 @@ import { userProfile, editUser, Logout } from "../../services/ApiClient";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import "./User.css";
+import Menu from '../Menu/Menu'
 
-const User = () => {
+const User = ({history}) => {
   const [state, setState] = useState(null);
   const [redirectTo, setRedirectTo] = useState(false);
 
-  const authContext = useAuthContext();
+  const authContext = useAuthContext(); // eslint-disable-line
   const userC = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
@@ -21,7 +22,7 @@ const User = () => {
         setState(response);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, []);// eslint-disable-line
 
   const sendData = (e) => {
     e.preventDefault();
@@ -60,6 +61,8 @@ const User = () => {
     return <Redirect to="/successfull" />;
   }
   return (
+    <>
+    <Menu history={history}  step={0} />
     <div className="userContainer">
       <h1>Perfil Usuario</h1>
       <form onSubmit={sendData}>
@@ -80,8 +83,9 @@ const User = () => {
 
         <Button type="submit" text="Enviar" />
       </form>
-      <div onClick={logout}>Logout</div>
+      <div onClick={logout} className="logout">Logout</div>
     </div>
+    </>
   );
 };
 export default User;

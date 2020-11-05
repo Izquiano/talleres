@@ -7,8 +7,9 @@ import Step1 from "../Steps/Step1/Step1";
 import Step2 from "../Steps/Step2/Step2";
 import Step3 from "../Steps/Step3/Step3";
 import Step4 from "../Steps/Step4/Step4";
+import Menu from "../Menu/Menu";
 
-const DarParte = () => {
+const DarParte = ({history}) => {
   const [state, setState] = useState({
     user: "",
     car: "",
@@ -25,6 +26,9 @@ const DarParte = () => {
 
   const user = JSON.parse(localStorage.getItem("user"));
 
+  
+  
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/user/cars/${user.id}`)
@@ -34,7 +38,7 @@ const DarParte = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, []);// eslint-disable-line
 
   useEffect(() => {
     axios
@@ -45,7 +49,7 @@ const DarParte = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, []);// eslint-disable-line
 
   const handleChangeMatricula = (e) => {
     const { name, value } = e.target;
@@ -85,6 +89,7 @@ const DarParte = () => {
   const handleClickDamagedParts = (e) => {
     let urlImage = e.target.attributes.src.nodeValue;
     const text = "_naranja";
+    
     if (urlImage.includes(text)) {
       const newUrlImage = urlImage.replace(text, "");
       e.target.setAttribute("src", newUrlImage);
@@ -132,7 +137,8 @@ const DarParte = () => {
 
   return (
     // Primera pantalla
-
+    <>
+  <Menu history={history} action={"action"} step={step} setStep={setStep}/>
     <div>
       {step === 0 ? (
         <Step0
@@ -194,6 +200,7 @@ const DarParte = () => {
         />
       ) : null}
     </div>
+    </>
   );
 };
 

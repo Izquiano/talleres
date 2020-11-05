@@ -3,8 +3,9 @@ import "./Coches.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import EditCar from "../EditCar/EditCar";
+import Menu from '../Menu/Menu'
 
-const Coches = () => {
+const Coches = ({history}) => {
   const [state, setState] = useState({
     user: "",
     car: "",
@@ -19,9 +20,9 @@ const Coches = () => {
       .then((response) => {
         setState({ ...state, cars: response.data, user: user.id });
       });
-  }, []);
+  }, []); // eslint-disable-line
 
-  const getdata = () => {
+  const getdata = () => { // eslint-disable-line
     const user = JSON.parse(localStorage.getItem("user"));
 
     axios
@@ -38,6 +39,8 @@ const Coches = () => {
   };
 
   return (
+    <>
+    <Menu history={history}  step={0} />
     <div>
       {state.car.length < 1 ? (
         <div className="cochesContainer">
@@ -70,6 +73,7 @@ const Coches = () => {
         />
       )}
     </div>
+    </>
   );
 };
 

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { workshops, listarPartes } from "../../../services/ApiClient";
 import ChartPartes from "../Chart/ChartPartes";
-import ChartServices from "../Chart/ChartServices";
+import Menu from '../../Menu/Menu'
+
 import Workshop from "../Workshop/Workshop";
-import Redirect from 'react-router-dom'
 
 import "./AdminHome.css";
 
-const AdminHome = () => {
-  const [state, setState] = useState("");
+const AdminHome = ({history}) => {
+  const [state, setState] = useState(""); // eslint-disable-line
   const [workshopsList, setWorkshopsList] = useState([]);
   const [partes, setPartes] = useState([]);
   const [selectWorkshop, setSelectWorkshop] = useState(null);
@@ -36,10 +36,20 @@ const AdminHome = () => {
   };
 
   if (selectWorkshop) {
-    return <Workshop selectWorkshop={selectWorkshop} partes={partes} setSelectWorkshop={setSelectWorkshop} setPartes={setPartes}/>;
+    return (
+      <Workshop
+        selectWorkshop={selectWorkshop}
+        partes={partes}
+        setSelectWorkshop={setSelectWorkshop}
+        setPartes={setPartes}
+        history={history}
+      />
+    );
   }
 
   return (
+    <>
+    <Menu history={history}  step={0} />
     <div className="adminHomeContainer">
       <h1>Dashboard</h1>
 
@@ -86,11 +96,8 @@ const AdminHome = () => {
           </div>
         ))}
       </div>
-      <div className="card">
-        <h2>Ranking de servicios</h2>
-        <ChartServices workshopsList={workshopsList} partes={partes} />
-      </div>
     </div>
+    </>
   );
 };
 

@@ -24,7 +24,7 @@ const ChapaYPintura = ({ state, handleClickDamagedParts, nextStep }) => {
       })
       
 
-    }, [])
+    }, [])// eslint-disable-line
 
 
   return (

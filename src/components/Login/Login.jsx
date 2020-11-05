@@ -17,6 +17,7 @@ const Login = (props) => {
 
   const [redirectTo, setRedirecTo] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [errors, setErrors] = useState()
 
   const authContext = useAuthContext();
 
@@ -24,11 +25,16 @@ const Login = (props) => {
     e.preventDefault();
     login(state)
       .then((response) => {
+        
         authContext.login(response);
+        
 
         setRedirecTo(true);
       })
-      .catch((err) => console.log(err));
+      .catch((err) =>
+        setErrors(err.response.data.message)
+       
+       );
   };
 
   const handleChange = (e) => {
@@ -55,7 +61,7 @@ const Login = (props) => {
   return (
     <div className="loginContainer">
       <h1>Iniciar sesión</h1>
-
+  {errors ? <div className="error">{errors}</div>: null}
       <form onSubmit={handleSubmit}>
         <Input
           type={state.visible}

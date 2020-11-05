@@ -17,4 +17,18 @@
   text-align: left;
   width: 130px;
   vertical-align: middle;
+  display: flex;
+}
+.socialLogin .linkButton span{
+  line-height: 21px;
+  margin-left: 5px;
+
+}
+
+
+
+.error{
+  color: red;
+  margin: 0 auto;
+  text-align: center;
 }

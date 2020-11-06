@@ -17,9 +17,8 @@ export const AuthenticatedRoute = (props) => {
 export const NotAuthenticatedRoute = (props) => {
   const { user } = useAuthContext()
   // const redirect = user && user.rol === "admin" ? RedirectToAdmin : user.rol === "client" && RedirectToHome
-  // return <Route {...props } component={!user ? props.component : redirect}/>
+ 
   return <Route {...props } component={!user ? props.component : RedirectToHome}/>
  
 }
 
-// export default AuthenticatedRoute

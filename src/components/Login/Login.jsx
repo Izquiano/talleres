@@ -90,7 +90,7 @@ const Login = (props) => {
           text="Google"
           icon="google"
         />
-        <LinkButton href="/auth/facebook" text="Facebook" icon="facebook" />
+        {/* <LinkButton href="/auth/facebook" text="Facebook" icon="facebook" /> */}
       </div>
 
       <div className="footer">

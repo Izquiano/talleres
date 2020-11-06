@@ -36,9 +36,16 @@ function App() {
 
       <Switch>
         {/* Admin */}
-       
-        <Route exact path="/dashboard" component={AdminHome} />
+
         
+       
+        {/* <Route exact path="/dashboard" component={AdminHome} /> */}
+        
+        <AuthenticatedRoute
+          path="/dashboard"
+          render={(props) => <AdminHome {...props}  />}
+          
+        />
 
         {/* User */}
         {/* <NotAuthenticatedRoute
@@ -74,7 +81,7 @@ function App() {
         <AuthenticatedRoute
           path="/coches"
           render={(props) => <Coches {...props}  />}
-          user={user}
+          
         />
         <AuthenticatedRoute
           path="/add-car"

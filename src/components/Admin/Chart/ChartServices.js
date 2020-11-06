@@ -4,15 +4,14 @@ import axios from "axios";
 import { workshops } from "../../../services/ApiClient";
 import "./Chart.css";
 
-const ChartPartes = () => {
-  const [chartData, setChartData] = useState({});
+const ChartServices = () => {
+  // const [chartData, setChartData] = useState({});
   const [labels, setLabels] = useState([]);
   const [data, setData] = useState([]);
 
   const chart = () => {
     let numeroPartes = [];
-    let nombresTalleres = [];
-    let nombresServicios = [];
+
     let todosLosServiciosNombres = [];
 
     axios
@@ -37,7 +36,16 @@ const ChartPartes = () => {
                 repetidos[numero] = (repetidos[numero] || 0) + 1;
               });
 
-             
+              setLabels(array);
+              for (let i = 0; i < array.length; i++) {
+                const NumeroDePartes = res.data
+                  .map((el) => el.services)
+                  .flat()
+                  .filter((e) => e.name === array[i]);
+
+                numeroPartes.push(NumeroDePartes.length);
+              }
+              setData(numeroPartes);
             }
           });
       })
@@ -53,19 +61,22 @@ const ChartPartes = () => {
   return (
     <div className="App2">
       <div>
-        {/* <Line
+        <Bar
+          type="horizontalBar"
           data={{
             labels: labels,
-            datasets: [{
-                label: "Stock A",
-                fill: false,
-                lineTension: 0.1,
-                backgroundColor: "rgba(225,0,0,0.4)",
-                borderColor: "red", // The main line color
-                borderCapStyle: 'square',
+
+            datasets: [
+              {
+                label: "Total",
+                fill: true,
+                lineTension: 0.3,
+                backgroundColor: "rgba(255, 121, 0, 0.4)",
+                borderColor: "rgba(255, 121, 0, 1)", // The main line color
+                borderCapStyle: "square",
                 borderDash: [], // try [5, 15] for instance
                 borderDashOffset: 0.0,
-                borderJoinStyle: 'miter',
+                borderJoinStyle: "miter",
                 pointBorderColor: "black",
                 pointBackgroundColor: "white",
                 pointBorderWidth: 1,
@@ -76,49 +87,26 @@ const ChartPartes = () => {
                 pointRadius: 4,
                 pointHitRadius: 10,
                 // notice the gap in the data and the spanGaps: true
-                data: chartData[1],
-                spanGaps: true,
-              }, {
-                label: "Stock B",
-                fill: true,
-                lineTension: 0.1,
-                backgroundColor: "rgba(167,105,0,0.4)",
-                borderColor: "rgb(167, 105, 0)",
-                borderCapStyle: 'butt',
-                borderDash: [],
-                borderDashOffset: 0.0,
-                borderJoinStyle: 'miter',
-                pointBorderColor: "white",
-                pointBackgroundColor: "black",
-                pointBorderWidth: 1,
-                pointHoverRadius: 8,
-                pointHoverBackgroundColor: "brown",
-                pointHoverBorderColor: "yellow",
-                pointHoverBorderWidth: 2,
-                pointRadius: 4,
-                pointHitRadius: 10,
-                // notice the gap in the data and the spanGaps: false
-                data: chartData[1],
-                spanGaps: false,
-              }
-          
-            ]
+                data: data,
+              },
+            ],
           }}
           options={{
+            animateScale: true,
             responsive: true,
             legend: false,
-            title: { text: "THICCNESS SCALE", display: true },
+            title: { text: "Servicios demandados", display: true },
             scales: {
               yAxes: [
                 {
-                  display: false,
+                  display: true,
                   ticks: {
                     autoSkip: true,
                     maxTicksLimit: 10,
                     beginAtZero: true,
                   },
                   gridLines: {
-                    display: false,
+                    display: true,
                   },
                 },
               ],
@@ -131,10 +119,10 @@ const ChartPartes = () => {
               ],
             },
           }}
-        /> */}
+        />
       </div>
     </div>
   );
 };
 
-export default ChartPartes;
+export default ChartServices;

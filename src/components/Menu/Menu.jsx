@@ -22,6 +22,7 @@ const Menu = ({ history, action, step, setStep }) => {
     <div>
       <div className="menuClosed">
         <img src="/icons/ic_Back_arrow.svg" alt="" onClick={atras} />
+        {user.rol === "admin" ? <div className="administrador"><b>⚙️ Administrador</b></div>: null}
         <div onClick={handleClick}>
           <img className="menu" src="/icons/ic_Menu_close.svg" alt="" />
         </div>

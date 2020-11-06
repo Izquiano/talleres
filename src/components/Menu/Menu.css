@@ -40,3 +40,8 @@ li.dashboard{
 li.dashboard a{
   color: white
 }
+
+.menuClosed .administrador{
+  color: var(--naranja);
+  width: unset;
+}

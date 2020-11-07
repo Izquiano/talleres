@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Doughnut } from "react-chartjs-2";
 import axios from "axios";
 
-
 const ChartPartes = () => {
   const [chartData, setChartData] = useState({});
-  const [labels, setLabels] = useState([]);// eslint-disable-line
-  const [data, setData] = useState([]);// eslint-disable-line
+  const [labels, setLabels] = useState([]); // eslint-disable-line
+  const [data, setData] = useState([]); // eslint-disable-line
 
   const chart = () => {
     let numeroPartes = [];
@@ -37,11 +36,24 @@ const ChartPartes = () => {
               label: "Total de partes",
               data: numeroPartes,
               backgroundColor: [
+                "rgba(255, 121, 0, 0.9)",
+                "rgba(255, 121, 0, 0.8)",
                 "rgba(255, 121, 0, 0.7)",
+                "rgba(255, 121, 0, 0.6)",
+                "rgba(255, 121, 0, 0.5)",
                 "rgba(255, 121, 0, 0.4)",
+                "rgba(255, 121, 0, 0.3)",
               ],
               borderWidth: 2,
-              borderColor: ["rgb(255, 121, 0)", "rgba(255, 121, 0, 0.5)"],
+              borderColor: [
+                "rgba(255, 121, 0, 0.3)",
+                "rgba(255, 121, 0, 0.4)",
+                "rgba(255, 121, 0, 0.5)",
+                "rgba(255, 121, 0, 0.6)",
+                "rgba(255, 121, 0, 0.7)",
+                "rgba(255, 121, 0, 0.8)",
+                "rgba(255, 121, 0, 0.9)",
+              ],
             },
           ],
         });

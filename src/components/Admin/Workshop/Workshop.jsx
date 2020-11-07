@@ -18,7 +18,7 @@ const Workshop = ({ selectWorkshop, partes, setSelectWorkshop, history }) => {
 
   useEffect(() => {
     const partesList = partes.filter((el) => el.workshop.id === selectWorkshop);
-    console.log(partesList[0])
+    
     setState(partesList);
   }, []);// eslint-disable-line
 
@@ -29,7 +29,7 @@ const Workshop = ({ selectWorkshop, partes, setSelectWorkshop, history }) => {
   }, []);// eslint-disable-line
 
 
-  console.log('state & workshop', state, workshop)
+
   const handleClickActive = () => {
     setActives(!actives);
   };

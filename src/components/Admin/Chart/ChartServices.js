@@ -31,12 +31,11 @@ const ChartServices = () => {
 
             for (let i = 0; i < todosLosServiciosNombres.length; i++) {
               var array = todosLosServiciosHechos;
-              console.log()
+             
 
              const array2 = array.filter((v, i, a) => a.indexOf(v) === i)
 
-              console.log("array2", array2)
-              console.log("array", array)
+             
               setLabels(array2);
               for (let i = 0; i < array.length; i++) {
                 const NumeroDePartes = res.data

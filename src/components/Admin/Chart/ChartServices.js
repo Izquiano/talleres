@@ -99,14 +99,14 @@ const ChartServices = () => {
             scales: {
               yAxes: [
                 {
-                  display: true,
+                  display: false,
                   ticks: {
                     autoSkip: true,
                     maxTicksLimit: 10,
                     beginAtZero: true,
                   },
                   gridLines: {
-                    display: true,
+                    display: false,
                   },
                 },
               ],

@@ -38,7 +38,7 @@ const User = ({history}) => {
   };
   const logout = () => {
     Logout().then((response) => {
-      // authContext.login(response);
+      authContext.logout(response);
 
       window.location.assign("/");
     });

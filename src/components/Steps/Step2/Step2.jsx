@@ -43,7 +43,7 @@ navigator.geolocation.getCurrentPosition(function (position) {
 
 const Step2 = ({ nextStep, handleChangeSelected, selected }) => {
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyAEQa3PYaWe_yOmF1oCTNJyxBr1-7SI9fY", 
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY, 
     libraries,
   });
   const [markers, setMarkers] = React.useState([]);

@@ -31,12 +31,13 @@ const ChartServices = () => {
 
             for (let i = 0; i < todosLosServiciosNombres.length; i++) {
               var array = todosLosServiciosHechos;
+              console.log()
 
-              array.forEach(function (numero) {
-                repetidos[numero] = (repetidos[numero] || 0) + 1;
-              });
+             const array2 = array.filter((v, i, a) => a.indexOf(v) === i)
 
-              setLabels(array);
+              console.log("array2", array2)
+              console.log("array", array)
+              setLabels(array2);
               for (let i = 0; i < array.length; i++) {
                 const NumeroDePartes = res.data
                   .map((el) => el.services)
